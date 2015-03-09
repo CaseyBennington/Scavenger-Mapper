@@ -6,6 +6,11 @@ $(document).ready(function () {
     var geocoder = new google.maps.Geocoder();
     var delay = 100;
     var locality;
+    var infoWindow = new google.maps.InfoWindow();
+/* 
+    This code should be refactored to modularize and become OOP.
+    The locations should be objects.
+*/
 
 /*
     function markLocations(addresses) {
@@ -19,39 +24,40 @@ $(document).ready(function () {
                     map: map
                 });
                 contentString="Hint #"+(i+1);
-		        google.maps.event.addListener(marker, 'click', function () {
-			        	var infowindow = new google.maps.InfoWindow({
-	                    map: map,
-	                    position: latlng,
-	                    content: contentString
-                	});
-		        });
+                google.maps.event.addListener(marker, 'click', function () {
+                        var infowindow = new google.maps.InfoWindow({
+                        map: map,
+                        position: latlng,
+                        content: contentString
+                    });
+                });
             });
         });
     }
 
 */
     function markLocations(addresses, locality) {
-        var contentString;
+        var contentString=null;
+        var infowindow=null;
         $.each(addresses, function (i, val) {
-
             geocoder.geocode({'address': val, componentRestrictions: {'locality': locality}}, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     var locationPostion=results[0].geometry.location;
                     var marker=addMarker(locationPostion);
                     contentString = "Hint #" + (i + 1);
-                    google.maps.event.addListener(marker, 'click', function () {
-                        var infowindow = new google.maps.InfoWindow({
-                            map: map,
-                            draggable: true,
-                            position: locationPostion,
-                            content: contentString
-                        });
-                    });
+                    createInfoWindow(marker, contentString);
+                    markers.push(marker);
                 } else {
                     alert('Geocode was not successful for the following reason: ' + status);
                 }
             });
+        });
+    }
+
+    function createInfoWindow(marker, content) {
+        google.maps.event.addListener(marker, 'click', function () {
+            infoWindow.setContent(content);
+            infoWindow.open(map, this);
         });
     }
 
@@ -69,14 +75,16 @@ $(document).ready(function () {
                 var pos = new google.maps.LatLng(position.coords.latitude,
                 position.coords.longitude);
                 findCity(pos);
-
-                var infowindow = new google.maps.InfoWindow({
-                    map: map,
-                    position: pos,
-                    content: 'Location found using HTML5.'
-                });
-
                 map.setCenter(pos);
+                // Adds a marker at the center of the map.
+                var marker = addMarker(pos);
+                google.maps.event.addListener(marker, 'click', function () {
+                    var infowindow = new google.maps.InfoWindow({
+                        map: map,
+                        position: pos,
+                        content: 'Your starting location.'
+                    });
+                });
             }, function () {
                 handleNoGeolocation(true);
             });
@@ -84,14 +92,6 @@ $(document).ready(function () {
             // Browser doesn't support Geolocation
             handleNoGeolocation(false);
         }
-
-        // This event listener will call addMarker() when the map is clicked.
-        google.maps.event.addListener(map, 'click', function (event) {
-            addMarker(event.latLng);
-        });
-
-        // Adds a marker at the center of the map.
-        addMarker(pos);
     }
 
     function handleNoGeolocation(errorFlag) {
@@ -116,17 +116,14 @@ $(document).ready(function () {
               'latLng': pos
           }, function (results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
-                  console.log(results);
                   if (results[1]) {
-                      //formatted address
-                      alert(results[0].formatted_address);
-                      //find country name
+                      //find name
                       for (var i = 0; i < results[0].address_components.length; i++) {
                           for (var b = 0; b < results[0].address_components[i].types.length; b++) {
                               //there are different types that might hold a city locality usually does
                               if (results[0].address_components[i].types[b] == "locality") {
                                   //this is the object you are looking for
-                                  locality = results[0].address_components[i];
+                                  locality = results[0].address_components[i].long_name;
                               }
                           }
                       }
@@ -140,25 +137,13 @@ $(document).ready(function () {
       }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     // Add a marker to the map and push to the array.
     function addMarker(location) {
         var marker = new google.maps.Marker({
             position: location,
+            draggable: true,
             map: map
         });
-        markers.push(marker);
         return marker;
     }
 
@@ -171,9 +156,6 @@ $(document).ready(function () {
     }
 
     google.maps.event.addDomListener(window, 'load', initialize);
-
-
-
 
     // use enter to add list items
     $('#new-hint-item').keyup(function (event) {
@@ -195,6 +177,7 @@ $(document).ready(function () {
             //add hint to array
             locations.push(txtVal);
             //change hints array to coordinates and add to map
+            deleteMarkers();
             markLocations(locations, locality);
 
             $('<li class="items"></li>').appendTo('#list').html('<p>' + txtVal + '</p><img class="check-mark" src="img/check_mark2.png"><img class="delete" src="img/delete.png">');
