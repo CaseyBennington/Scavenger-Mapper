@@ -31,11 +31,11 @@ $(document).ready(function () {
     }
 
 */
-    function markLocations(addresses) {
+    function markLocations(addresses, locality) {
         var contentString;
         $.each(addresses, function (i, val) {
 
-            geocoder.geocode({'address': val, componentRestrictions: {'locality': 'SanDiego'}}, function (results, status) {
+            geocoder.geocode({'address': val, componentRestrictions: {'locality': locality}}, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     var locationPostion=results[0].geometry.location;
                     var marker=addMarker(locationPostion);
@@ -126,11 +126,7 @@ $(document).ready(function () {
                               //there are different types that might hold a city locality usually does
                               if (results[0].address_components[i].types[b] == "locality") {
                                   //this is the object you are looking for
-                                  city = results[0].address_components[i];
-                                  //city data
-                                  alert(city.short_name + " " + city.long_name);
-                                  locality = city;
-                                alert(locality);
+                                  locality = results[0].address_components[i];
                               }
                           }
                       }
@@ -199,7 +195,7 @@ $(document).ready(function () {
             //add hint to array
             locations.push(txtVal);
             //change hints array to coordinates and add to map
-            markLocations(locations);
+            markLocations(locations, locality);
 
             $('<li class="items"></li>').appendTo('#list').html('<p>' + txtVal + '</p><img class="check-mark" src="img/check_mark2.png"><img class="delete" src="img/delete.png">');
             $txtBox.val('');
@@ -240,7 +236,7 @@ $(document).ready(function () {
         var hintRemove = $(this).parent().text();
         locations.splice($.inArray(hintRemove, locations), 1);
         deleteMarkers();
-        markLocations(locations);
+        markLocations(locations, locality);
 
         $(this).parent().remove();
     });
