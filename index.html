@@ -1,0 +1,65 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Scavenger Mapper</title>
+        <meta name="description" content="scavenger hunt map">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdhu-WZyt6siO5utQx5cxROVRLCWoXGqA"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="header-container">
+            <header class="wrapper clearfix">
+                <h1 class="title">Scavenger Mapper</h1>
+            </header>
+        </div>
+
+        <div class="main-container">
+            <div class="main wrapper clearfix">
+
+                <article>
+                    <header>
+                        <p>Welcome to the Scavenger Hunt Map application!<br><br>This app will allow you to enter your hint/clue address or coordinate locations in the list and have them placed on the map for easy tracking. In the future you will even be able to track the distance between the locations and calculate the quickest route by distance.<br><br>To begin, simply start entering your locations in the Hints list.<br><strong>DO NOT</strong> use the '&' symbol for cross streets. Use 'and' instead. And most importantly, the more precise you are with your address, the more accurate the marker will be. Good Luck!</p>
+                    </header>
+
+                    <div id="map-canvas"></div>
+                </article>
+
+                <aside id="hints">
+                    <h3>Hints</h3>
+                    <ol id="list">
+                    </ol>
+                    <input id="new-hint-item" alt="Hint Item Input Box" autofocus placeholder="123 Street" type="text" value="">
+                    <button type="submit" id="add">Add</button>
+                </aside>
+            </div> <!-- #main -->
+        </div> <!-- #main-container -->
+
+        <div class="footer-container">
+            <footer class="wrapper">
+                <h3>Scavenger Mapper - by Casey Bennington</h3>
+            </footer>
+        </div>
+
+    <!--
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    -->
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
