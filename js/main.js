@@ -10,6 +10,8 @@ $(document).ready(function () {
 /* 
     This code should be refactored to modularize and become OOP.
     The locations should be objects.
+    This current code is very resource intensive and thus should be adjusted for fewer resource calls,
+    especially since its a mobile first design.
 */
 
 /*
