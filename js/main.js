@@ -130,6 +130,7 @@ $(document).ready(function () {
                                   //city data
                                   alert(city.short_name + " " + city.long_name);
                                   locality = city;
+                                alert(locality);
                               }
                           }
                       }
