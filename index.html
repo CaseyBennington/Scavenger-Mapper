@@ -32,18 +32,19 @@
 
                 <article>
                     <header>
-                        <p>Welcome to the Scavenger Hunt Map application!<br><br>This app will allow you to enter your hint/clue address or coordinate locations in the list and have them placed on the map for easy tracking. In the future you will even be able to track the distance between the locations and calculate the quickest route by distance.<br><br>To begin, simply start entering your locations in the Hints list.<br><strong>DO NOT</strong> use the '&' symbol for cross streets. Use 'and' instead. And most importantly, the more precise you are with your address, the more accurate the marker will be. Good Luck!</p>
+                        <p>Welcome to the Scavenger Hunt Map application!<br><br>Use Scavenger Mapper to help you in your next race!<br>This app will allow you to enter your hint/clue address or coordinate locations in the list and have them placed on the map for easy tracking. In the future you will even be able to track the distance between the locations and calculate the quickest route by distance.<br><br>After you receive your Race Clue Sheet, and solve the clues, simply start entering your locations in the Hints/Clues list. Enter the number of the clue in the first text box and the address/location in the second text box.<br><strong>DO NOT</strong> use the '&' symbol for cross streets. Use 'and' instead. And most importantly, the more precise you are with your address, the more accurate the marker will be.<br><br>Good Luck!</p>
                     </header>
-
                     <div id="map-canvas"></div>
                 </article>
 
                 <aside id="hints">
-                    <h3>Hints</h3>
-                    <ol id="list">
-                    </ol>
-                    <input id="new-hint-item" alt="Hint Item Input Box" autofocus placeholder="123 Street" type="text" value="">
-                    <button type="submit" id="add">Add</button>
+                    <h3>Hints/Clues</h3>
+                    <h6>Enter the clue number in the first box and the address in the second box.<br>For hints that have no specific location, please enter 'no' in the appropriate text box.</h6>
+                    <ul id="list">
+                    </ul>
+                    <input id="new-hint-number" required alt="Hint Item Number Input Box" autofocus placeholder="1" type="number" maxlength="2" size="2" min="1" max="99" value="">
+                    <input id="new-hint-item" required alt="Hint Item Input Box" placeholder="123 Street" type="text" value="">
+                    <button type="submit" id="add">ADD</button>
                 </aside>
             </div> <!-- #main -->
         </div> <!-- #main-container -->

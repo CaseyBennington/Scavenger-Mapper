@@ -199,11 +199,15 @@ article > #map-canvas {
 .deleteShow{
     display: inline;
 }
+
+/* is this still relevant?? 
 #new-list-item {
     display: block;
     margin: 3% auto;
     width: 35%;
 }
+*/
+
 article{
     margin:1%;
 }
@@ -226,6 +230,12 @@ h3 {
     text-decoration: underline;
     margin-bottom: 5px;
 }
+h6 {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-size: .85em;
+    font-weight: normal;
+}
 p {
     font-size: 1em;
     display:inline-block;
@@ -233,15 +243,16 @@ p {
 strong{
     font-weight: bold;
 }
-ol {
-    list-style: decimal;
+ul {
+    list-style: none;
     position: relative;
     z-index: 999;
 }
-ol > li {
-    margin-left: 8%;
+ul > li {
+    /*margin-left: 8%; */
     margin-bottom: 1%;
     cursor: pointer;
+    color: #FF7D00;
 }
 .listHover{
     background-color: #CFCFCF;
@@ -253,12 +264,20 @@ ol > li {
 }
 input {
     border-radius: 1px;
+    display:inline;
+}
+#new-hint-number{
+    width:8%;
+    margin-right:1%;
 }
 button {
-
+    background: #003F7F;
+    color: #FF7D00;
+    font-weight: bold;
+    font-size: 1em;
+    width: 19%;
+    margin-left: 2%;
 }
-
-
 
 
 /* ==========================================================================
