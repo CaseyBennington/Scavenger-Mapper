@@ -223,6 +223,7 @@ $(document).ready(function () {
         for (var i = 0; i < locationsArray.length; ++i) {
             path.push(locationsArray[i].marker.position);
         }
+        
         // Create polylines.
         var routePath = new google.maps.Polyline({
             path: path,
@@ -275,7 +276,7 @@ $(document).ready(function () {
             alert('Please enter a location to add to the list.');
         }else if($.trim(txtVal)=='no'){
             // This represents no action taken for the user. These hints are randoms to be completed as the racer is moving between the other locations.
-            $('<li class="items"></li>').appendTo('#list').html('<p id="hint' + txtNumVal + '">#'+ txtNumVal + ': ' + txtVal + '</p><img class="check-mark" src="img/check_mark2.png"><img class="delete" src="img/delete.png">');
+            $('<li class="items" id="' + txtNumVal + '"></li>').appendTo('#list').html('<p id="hint' + txtNumVal + '">#'+ txtNumVal + ': ' + txtVal + '</p><img class="check-mark" src="img/check_mark2.png"><img class="delete" src="img/delete.png">');
             $txtBox.val('');
             $txtNumBox.val('');
         } else {
@@ -283,7 +284,7 @@ $(document).ready(function () {
             createLocation(txtVal, txtNumVal);
 
             // Add li element to page and clear text boxes for next entry by user.
-            $('<li class="items"></li>').appendTo('#list').html('<p id="hint' + txtNumVal + '">#'+ txtNumVal + ': ' + txtVal + '</p><img class="check-mark" src="img/check_mark2.png"><img class="delete" src="img/delete.png">');
+            $('<li class="items" id="' + txtNumVal + '"></li>').appendTo('#list').html('<p id="hint' + txtNumVal + '">#'+ txtNumVal + ': ' + txtVal + '</p><img class="check-mark" src="img/check_mark2.png"><img class="delete" src="img/delete.png">');
             $txtBox.val('');
             $txtNumBox.val('');
         }
@@ -365,6 +366,22 @@ $(document).ready(function () {
 
     //sortable list items
     $('#list').sortable({
-        axis: "y"
+        axis: "y",
+        update: function(event, ui){
+            // Retrieves list of item IDs in order and convert to int
+            var newOrder = $(this).sortable('toArray').map(function(i){return parseInt(i, 10);});
+            // Update the locationsArray
+            updateArrayOrder(newOrder);
+            // Update the Route Path
+            updateRoutePath();
+        }
     });
+
+    // Update the locationsArray after new user sort.
+    function updateArrayOrder(newOrder){
+        // Iterate through each item in the neworder array
+        locationsArray.sort(function (a, b) {
+            return newOrder.indexOf(a.hintNumber) < newOrder.indexOf(b.hintNumber) ? -1 : 1;
+        });
+    }
 });
