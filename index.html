@@ -32,25 +32,54 @@
 
                 <article>
                     <header>
-                        <p>Welcome to the Scavenger Hunt Map application!<br><br>This app will allow you to enter your hint/clue address or coordinate locations in the list and have them placed on the map for easy tracking. In the future you will even be able to track the distance between the locations and calculate the quickest route by distance.<br><br>To begin, simply start entering your locations in the Hints list.<br><strong>DO NOT</strong> use the '&' symbol for cross streets. Use 'and' instead. And most importantly, the more precise you are with your address, the more accurate the marker will be. Good Luck!</p>
-                    </header>
+                        <p>Welcome to the Scavenger Hunt Map application!</p>
 
+        <!--Begin accordion HTML-->
+        <div class="accordion clearfix">
+          <div class="accordion-innerwrap">
+            <div class="panel-container" tabindex="1">
+                <h4 id="trigger1" class="panel-title"><b class="icon panel-closed" aria-hidden="true">&oplus;</b> Instructions:</h4>
+                <div class="panel-content visuallyhidden" aria-expanded="false">
+                    <p>
+                    Use <strong>Scavenger Mapper</strong> to help you during your next race!<br>This app will allow you to enter your hint/clue addresses or coordinate locations in the list and have them placed on the map for easy tracking. In the future you will even be able to track the distance between the locations and calculate the quickest route by distance.<br><br>After you receive your Race Clue Sheet and solve the clues, simply start entering your locations in the Hints/Clues list. Enter the number of the clue in the first text box and the address/location in the second text box.<br><br><strong>DO NOT</strong> use the '&' symbol for cross streets. Use 'and' instead. And most importantly, the more precise you are with your address, the more accurate the marker will be.<br>If you would like to reorder your route, simply drag the address to its new position in the list.<br><br>Good Luck!</p>
+                </div>
+            </div>
+          </div>
+        </div><!--End accordion HTML-->
+
+                    </header>
                     <div id="map-canvas"></div>
                 </article>
 
                 <aside id="hints">
-                    <h3>Hints</h3>
-                    <ol id="list">
-                    </ol>
-                    <input id="new-hint-item" alt="Hint Item Input Box" autofocus placeholder="123 Street" type="text" value="">
-                    <button type="submit" id="add">Add</button>
+                    <h3>Hints/Clues</h3>
+
+                    <!--Begin accordion HTML-->
+                    <div class="accordion clearfix">
+                      <div class="accordion-innerwrap">
+                        <div class="panel-container" tabindex="2">
+                            <h4 id="trigger2" class="panel-title"><b class="icon panel-closed" aria-hidden="true">&oplus;</b> User Tips (please read before using):</h4>
+                            <div class="panel-content visuallyhidden" aria-expanded="false">
+                                <h6>Enter the clue number in the first box and the address in the second box.<br>For hints that have no specific location, please enter 'no' in the appropriate text box.</h6>
+                            </div>
+                        </div>
+                      </div>
+                    </div><!--End accordion HTML-->
+
+                    <ul id="list">
+                    </ul>
+                    <input id="new-hint-number" required alt="Hint Item Number Input Box" autofocus placeholder="1" type="number" maxlength="2" size="2" min="1" max="99" value="">
+                    <input id="new-hint-item" required alt="Hint Item Input Box" placeholder="123 Street" type="text" value="">
+                    <button type="submit" id="add">ADD</button>
+                    <label for="distance">Total Distance:</label>
+                    <input id="distance" alt="Total Distace" placeholder="100 meters" type="text" value="">
                 </aside>
             </div> <!-- #main -->
         </div> <!-- #main-container -->
 
         <div class="footer-container">
             <footer class="wrapper">
-                <h3>Scavenger Mapper - by Casey Bennington</h3>
+                <h3>Scavenger Mapper - Copyright &#169; 2015 Casey Bennington</h3>
             </footer>
         </div>
 
