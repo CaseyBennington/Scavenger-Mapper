@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
     var flag = 0;
     var map;
     var locationsArray = [];
@@ -242,15 +242,35 @@ $(document).ready(function () {
         }
         routePath = getRoutePath();
         routePath.setMap(map);
+        updateDisplay();
     }
-/*
+
+    google.maps.LatLng.prototype.kmTo = function (a) {
+        var e = Math,
+            ra = e.PI / 180;
+        var b = this.lat() * ra,
+            c = a.lat() * ra,
+            d = b - c;
+        var g = this.lng() * ra - a.lng() * ra;
+        var f = 2 * e.asin(e.sqrt(e.pow(e.sin(d / 2), 2) + e.cos(b) * e.cos(c) * e.pow(e.sin(g / 2), 2)));
+        return f * 6378.137;
+    };
+    google.maps.Polyline.prototype.inKm = function (n) {
+        var a = this.getPath(n),
+            len = a.getLength(),
+            dist = 0;
+        for (var i = 0; i < len - 1; i++) {
+            dist += a.getAt(i).kmTo(a.getAt(i + 1));
+        }
+        return dist;
+    }
+
     // Use this to add distance calculation to application if needed.
     function updateDisplay() {
         var total_distance_m = 1000 * routePath.inKm();
-        var dist = unit_handler.f(total_distance_m);
-        document.getElementById("distance").value = dist.toFixed(3);
+        document.getElementById("distance").value = total_distance_m.toFixed(3)+" meters";
     }
-*/
+
 
 // Start the program
     google.maps.event.addDomListener(window, 'load', initialize);
@@ -384,4 +404,45 @@ $(document).ready(function () {
             return newOrder.indexOf(a.hintNumber) < newOrder.indexOf(b.hintNumber) ? -1 : 1;
         });
     }
-});
+
+     // Collapsible Text
+      function accordion(trigger) {
+        //variables
+        var $button = $(trigger), //trigger firing the event
+          visible = true; //flag for wayfinding
+
+        $button.hover().css({
+          'cursor': 'pointer'
+        });
+
+        //event
+        $button.click(function() {
+          //conditional check
+          if (!visible) {
+            $button.removeClass('active');
+            $('.panel-title .icon').html('&oplus;');
+
+            $(this).next().slideUp('slow', function() {
+              $(this).addClass('visuallyhidden').slideDown(0);
+              $('.panel-content').attr('aria-expanded', 'false');
+            });
+          } else {
+            $button.addClass('active');
+            $('.panel-title.active .icon').html('&otimes;');
+
+            $(this).next().slideUp(0, function() {
+              $('.panel-content').attr('aria-expanded', 'true');
+              $(this).removeClass('visuallyhidden').slideDown('slow');
+            });
+          }
+
+          //flag
+          visible = !visible;
+          return false
+        });
+      }
+      //call to widget trigger1
+      accordion('#trigger1');
+      //call to widget trigger2
+      accordion('#trigger2');
+}); //end document.ready()

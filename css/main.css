@@ -168,6 +168,76 @@ article > #map-canvas {
     padding-bottom: 100%; /* must be the same as the width */
 }
 
+/* ==========
+    Accordion Styles
+    ========= */
+
+.accordion .panel-title {
+  margin: 0;
+  padding: .25em;
+  -webkit-transition: .3s all ease-in-out;
+  -moz-transition: .3s all ease-in-out;
+  -o-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+  /*color: #333333;*/
+}
+.accordion .panel-title:hover {
+  background: #4D667F;
+  color: #FF7D00;
+}
+.accordion .panel-title:active,
+.accordion .panel-title.active:active {
+  background: #999;
+}
+.accordion .panel-title.active {
+  background: #4D667F;
+  color: #FF7D00;
+}
+.accordion .accordion-innerwrap {
+  margin: 0 auto;
+  width: 98%;
+}
+.accordion .panel-title .icon,
+.accordion .panel-title.active .icon {
+  font-size: 1em;
+}
+.panel-container {
+  margin: .25em 0;
+}
+.panel-content {
+  margin: 0;
+  padding: .25em;
+}
+.js .visuallyhidden {
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.js .visuallyhidden.focusable,
+.js .visuallyhidden.focusable,
+.no-js .visuallyhidden {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+.js .visuallyhidden.focusable:active,
+.js .visuallyhidden.focusable:focus,
+.no-js .visuallyhidden {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
 /* ==========================================================================
    Main styles
    ========================================================================== */
@@ -199,15 +269,6 @@ article > #map-canvas {
 .deleteShow{
     display: inline;
 }
-
-/* is this still relevant?? 
-#new-list-item {
-    display: block;
-    margin: 3% auto;
-    width: 35%;
-}
-*/
-
 article{
     margin:1%;
 }
@@ -228,7 +289,6 @@ h3 {
 }
 #hints>h3{
     text-decoration: underline;
-    margin-bottom: 5px;
 }
 h6 {
     margin-top: 1%;
@@ -278,6 +338,9 @@ button {
     width: 19%;
     margin-left: 2%;
 }
+#distance {
+    margin-top: 2%;
+}
 
 
 /* ==========================================================================
@@ -285,7 +348,6 @@ button {
    ========================================================================== */
 
 @media only screen and (min-width: 480px) {
-
 
 }
 
