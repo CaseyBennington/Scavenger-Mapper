@@ -292,8 +292,8 @@ $(document).ready(function() {
         var txtNumVal = $txtNumBox.val();
         event.preventDefault();
 
-        if (!$.trim(txtVal)) {
-            alert('Please enter a location to add to the list.');
+        if (!$.trim(txtVal) || !$.trim(txtNumVal)) {
+            alert('Please enter both a hint number and a location to add to the list.');
         }else if($.trim(txtVal)=='no'){
             // This represents no action taken for the user. These hints are randoms to be completed as the racer is moving between the other locations.
             $('<li class="items" id="' + txtNumVal + '"></li>').appendTo('#list').html('<p id="hint' + txtNumVal + '">#'+ txtNumVal + ': ' + txtVal + '</p><img class="check-mark" src="img/check_mark2.png"><img class="delete" src="img/delete.png">');
