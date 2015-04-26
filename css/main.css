@@ -342,6 +342,9 @@ button {
 #distance {
     margin-top: 2%;
 }
+#distance-options{
+  margin-top: 2%;
+}
 
 /* ==========================================================================
    Media Queries
