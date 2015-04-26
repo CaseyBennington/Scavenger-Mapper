@@ -1,4 +1,31 @@
 $(document).ready(function() {
+    var FEET = {
+        label: "Feet",
+        f: function (distance) {
+            return distance * 3.2808399;
+        }
+    };
+    var MILES = {
+        label: "Miles",
+        f: function (distance) {
+            return distance / 1609.344;
+        }
+    };
+    var KMS = {
+        label: "KMs",
+        f: function (distance) {
+            return distance / 1000;
+        }
+    };
+    var METRES = {
+        label: "Metres",
+        f: function (distance) {
+            return (distance);
+        }
+    };
+    var unit_handler = MILES;
+    document.getElementById("cb_dist1").checked = true;
+
     $("#new-hint-number").focus();
     var flag = 0;
     var map;
@@ -246,6 +273,7 @@ $(document).ready(function() {
         updateDisplay();
     }
 
+    // Using google to find the distance of the markers
     google.maps.LatLng.prototype.kmTo = function (a) {
         var e = Math,
             ra = e.PI / 180;
@@ -266,10 +294,19 @@ $(document).ready(function() {
         return dist;
     }
 
-    // Use this to add distance calculation to application if needed.
+    // Use this to add distance calculation to application.
     function updateDisplay() {
         var total_distance_m = 1000 * routePath.inKm();
-        document.getElementById("distance").value = total_distance_m.toFixed(3)+" meters";
+        var dist = unit_handler.f(total_distance_m);
+        document.getElementById("distance").value = dist.toFixed(3);
+    }
+    // Tells the program which unit to use for the distance calculations
+    function toggleUnits(arg) {
+        if (arg == "MILES") unit_handler = MILES;
+        if (arg == "KMS") unit_handler = KMS;
+        if (arg == "FEET") unit_handler = FEET;
+        if (arg == "METRES") unit_handler = METRES;
+        updateDisplay();
     }
 
 
@@ -407,8 +444,26 @@ $(document).ready(function() {
         });
     }
 
-     // Collapsible Text
-      function accordion(trigger) {
+    // click button update miles distance display
+    $("#cb_dist1").on('click', function () {
+        toggleUnits('MILES');
+    });
+    // click button update KMs distance display
+    $("#cb_dist2").on('click', function () {
+        toggleUnits('KMS');
+    });
+    // click button update metres distance display
+    $("#cb_dist3").on('click', function () {
+        toggleUnits('METRES');
+    });
+    // click button update feet distance display
+    $("#cb_dist4").on('click', function () {
+        toggleUnits('FEET');
+    });
+
+
+    // Collapsible Text
+    function accordion(trigger) {
         //variables
         var $button = $(trigger), //trigger firing the event
           visible = true; //flag for wayfinding
