@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $("#new-hint-number").focus();
     var flag = 0;
     var map;
     var locationsArray = [];
@@ -308,6 +309,7 @@ $(document).ready(function() {
             $txtBox.val('');
             $txtNumBox.val('');
         }
+        $("#new-hint-number").focus();
     });
 
     // Ensure that the new-hint-number is a number
