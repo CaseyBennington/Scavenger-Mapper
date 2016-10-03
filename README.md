@@ -6,3 +6,6 @@ This app will allow you to enter your hint/clue address or coordinate locations 
 
 To begin, simply start entering your locations in the Hints list.
 DO NOT use the '&' symbol for cross streets. Use 'and' instead. And most importantly, the more precise you are with your address, the more accurate the marker will be. Good Luck!
+
+
+[See it here.](http://caseybennington.github.io/Scavenger-Mapper/)
