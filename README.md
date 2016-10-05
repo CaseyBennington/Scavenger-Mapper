@@ -1,3 +1,4 @@
+[![See it in action.](scavenger-mapper.png)](http://caseybennington.github.io/Scavenger-Mapper/)
 # Scavenger-Mapper
 Map application used during scavenger hunts
 Welcome to the Scavenger Hunt Map application!
