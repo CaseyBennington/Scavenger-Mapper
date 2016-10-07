@@ -1,6 +1,7 @@
 [![See it in action.](scavenger-mapper.png)](http://caseybennington.github.io/Scavenger-Mapper/)
 # Scavenger-Mapper
 Map application used during scavenger hunts
+
 Welcome to the Scavenger Hunt Map application!
 
 This app will allow you to enter your hint/clue address or coordinate locations in the list and have them placed on the map for easy tracking. In the future you will even be able to track the distance between the locations and calculate the quickest route by distance.
