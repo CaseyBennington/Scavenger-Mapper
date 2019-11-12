@@ -323,12 +323,12 @@ $(document).ready(function() {
     });
 
     //add list items
-    $('#add').on('click', function () {
+    $('#add').on('click', function (e) {
         var $txtNumBox = $('#new-hint-number');
         var $txtBox = $('#new-hint-item');
         var txtVal = $txtBox.val();
         var txtNumVal = $txtNumBox.val();
-        event.preventDefault();
+        e.preventDefault();
 
         if (!$.trim(txtVal) || !$.trim(txtNumVal)) {
             alert('Please enter both a hint number and a location to add to the list.');
